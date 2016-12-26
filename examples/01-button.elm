@@ -14,22 +14,22 @@ main =
 
 -- MODEL
 
-
 type alias Model = Int
 
+defaultModel : Model
+defaultModel = 
+  0
 
 model : Model
 model =
-  0
+  defaultModel
 
 
 
 -- UPDATE
 
 
-type Msg
-  = Increment
-  | Decrement
+type Msg = Increment | Decrement | Reset
 
 
 update : Msg -> Model -> Model
@@ -40,6 +40,9 @@ update msg model =
 
     Decrement ->
       model - 1
+
+    Reset ->
+      defaultModel
 
 
 
@@ -52,4 +55,5 @@ view model =
     [ button [ onClick Decrement ] [ text "-" ]
     , div [] [ text (toString model) ]
     , button [ onClick Increment ] [ text "+" ]
+    , button [ onClick Reset ] [text "Reseti"]
     ]
